@@ -1,0 +1,32 @@
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.dll
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.pdb
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\System.Data.Entity.Design.PluralizationServices.dll
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csprojAssemblyReference.cache
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.Properties.Resources.resources
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.GenerateResource.cache
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CoreCompileInputs.cache
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CopyComplete
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.dll
+C:\Users\gt_cake\Downloads\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.pdb
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.dll
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.pdb
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\Newtonsoft.Json.dll
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\bin\Debug\System.Data.Entity.Design.PluralizationServices.dll
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csprojAssemblyReference.cache
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.Properties.Resources.resources
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.GenerateResource.cache
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CoreCompileInputs.cache
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CopyComplete
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.dll
+D:\jsonclassgenerate\jsonclassgenerator\sourceCode\jsonclassgenerator\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.pdb
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.dll
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\bin\Debug\Xamasoft.JsonClassGenerator.pdb
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\bin\Debug\Newtonsoft.Json.dll
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csprojAssemblyReference.cache
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.Properties.Resources.resources
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.GenerateResource.cache
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CoreCompileInputs.cache
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\JsonClassGeneratorLib.csproj.CopyComplete
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.dll
+D:\application\json to document\webAPI\JSON2CSHARP\JSON2CSHARP\JsonCSharpClassGeneratorLib\obj\Debug\Xamasoft.JsonClassGenerator.pdb
