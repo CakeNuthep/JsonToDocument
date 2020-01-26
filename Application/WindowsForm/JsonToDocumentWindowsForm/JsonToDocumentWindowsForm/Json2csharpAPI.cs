@@ -30,8 +30,14 @@ namespace JsonToDocumentWindowsForm
             //IRestResponse response = client.Execute(request);
             ////Console.WriteLine(response.Content);
 
-
-            return JsonConvert.DeserializeObject<AllDataResponseModel>(response.Content);
+            try
+            {
+                return JsonConvert.DeserializeObject<AllDataResponseModel>(response.Content);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }
