@@ -74,16 +74,13 @@ namespace JsonToDocumentWindowsForm
                         }
                         string className = response.document.datasetJson[i].tableName;
                         DataTable dt = CreateDataTable();
-                        foreach (AllDataResponseModel.DatasetJson dsJson in response.document.datasetJson)
+                        foreach (AllDataResponseModel.Row r in response.document.datasetJson[i].rows)
                         {
-                            foreach (AllDataResponseModel.Row r in dsJson.rows)
-                            {
-                                DataRow row = dt.NewRow();
-                                row["ColumnName"] = r.columName;
-                                row["Type"] = r.type;
-                                row["Example"] = r.example;
-                                dt.Rows.Add(row);
-                            }
+                            DataRow row = dt.NewRow();
+                            row["ColumnName"] = r.columName;
+                            row["Type"] = r.type;
+                            row["Example"] = r.example;
+                            dt.Rows.Add(row);
                         }
                         listUI.Add(createUI(className, classStr, dt));
                         if(radioButton_class.Checked)
