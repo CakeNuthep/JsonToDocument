@@ -125,8 +125,8 @@ namespace Xamasoft.JsonClassGenerator
             used = true;
 
 
-            var writeToDisk = TargetFolder != null;
-            if (writeToDisk && !Directory.Exists(TargetFolder)) Directory.CreateDirectory(TargetFolder);
+            //var writeToDisk = TargetFolder != null;
+            //if (writeToDisk && !Directory.Exists(TargetFolder)) Directory.CreateDirectory(TargetFolder);
 
 
             JObject[] examples;
@@ -160,16 +160,16 @@ namespace Xamasoft.JsonClassGenerator
             List<List<string>> listResult = new List<List<string>>();
             foreach (var type in Types)
             {
-                var folder = TargetFolder;
-                if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
-                {
-                    var s = SecondaryNamespace;
-                    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
-                    folder = Path.Combine(folder, s);
-                    Directory.CreateDirectory(folder);
-                }
+                //var folder = TargetFolder;
+                //if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
+                //{
+                //    var s = SecondaryNamespace;
+                //    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
+                //    folder = Path.Combine(folder, s);
+                //    Directory.CreateDirectory(folder);
+                //}
                 //WriteClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
-                List<string> listString = GetClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
+                List<string> listString = GetClassesToFile( new[] { type });
                 listResult.Add(listString);
             }
             return listResult;
@@ -180,14 +180,14 @@ namespace Xamasoft.JsonClassGenerator
             List<DataSet> listDataSet = new List<DataSet>();
             foreach (var type in Types)
             {
-                var folder = TargetFolder;
-                if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
-                {
-                    var s = SecondaryNamespace;
-                    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
-                    folder = Path.Combine(folder, s);
-                    Directory.CreateDirectory(folder);
-                }
+                //var folder = TargetFolder;
+                //if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
+                //{
+                //    var s = SecondaryNamespace;
+                //    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
+                //    folder = Path.Combine(folder, s);
+                //    Directory.CreateDirectory(folder);
+                //}
                 //WriteClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
                 //List<string> listString = GetClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
                 DataSet dataSet = GetDataSetFromJson(new[] { type });
@@ -239,14 +239,14 @@ namespace Xamasoft.JsonClassGenerator
             List<DataSet> listDataSet = new List<DataSet>();
             foreach (var type in Types)
             {
-                var folder = TargetFolder;
-                if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
-                {
-                    var s = SecondaryNamespace;
-                    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
-                    folder = Path.Combine(folder, s);
-                    Directory.CreateDirectory(folder);
-                }
+                //var folder = TargetFolder;
+                //if (!UseNestedClasses && !type.IsRoot && SecondaryNamespace != null)
+                //{
+                //    var s = SecondaryNamespace;
+                //    if (s.StartsWith(Namespace + ".")) s = s.Substring(Namespace.Length + 1);
+                //    folder = Path.Combine(folder, s);
+                //    Directory.CreateDirectory(folder);
+                //}
                 //WriteClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
                 //List<string> listString = GetClassesToFile(Path.Combine(folder, (UseNestedClasses && !type.IsRoot ? MainClass + "." : string.Empty) + type.AssignedName + CodeWriter.FileExtension), new[] { type });
                 DataSet dataSet = GetDataSetFromJson( new[] { type });
@@ -264,15 +264,15 @@ namespace Xamasoft.JsonClassGenerator
             }
         }
 
-        private List<string> GetClassesToFile(string path, IEnumerable<JsonType> types)
-        {
-            List<string> listString = new List<string>();
-            using (var sw = new StreamWriter(path, false, Encoding.UTF8))
-            {
-                listString.AddRange(GetClassesToFile(sw, types));
-            }
-            return listString;
-        }
+        //private List<string> GetClassesToFile(IEnumerable<JsonType> types)
+        //{
+        //    List<string> listString = new List<string>();
+        //    //using (var sw = new StreamWriter(path, false, Encoding.UTF8))
+        //    {
+        //        listString.AddRange(GetClassesToFile(types));
+        //    }
+        //    return listString;
+        //}
 
         private void WriteClassesToFile(TextWriter sw, IEnumerable<JsonType> types)
         {
@@ -289,39 +289,39 @@ namespace Xamasoft.JsonClassGenerator
             if (UseNamespaces && inNamespace) CodeWriter.WriteNamespaceEnd(this, sw, rootNamespace);
             CodeWriter.WriteFileEnd(this, sw);
         }
-        private List<string> GetClassesToFile(TextWriter sw, IEnumerable<JsonType> types)
+        private List<string> GetClassesToFile(IEnumerable<JsonType> types)
         {
             List<string> listString = new List<string>();
             var inNamespace = false;
             var rootNamespace = false;
 
             //CodeWriter.WriteFileStart(this, sw);
-            listString.AddRange(CodeWriter.GetFileStart(this, sw));
+            listString.AddRange(CodeWriter.GetFileStart(this));
             foreach (var type in types)
             {
                 if (UseNamespaces && inNamespace && rootNamespace != type.IsRoot && SecondaryNamespace != null)
                 {
                     //CodeWriter.WriteNamespaceEnd(this, sw, rootNamespace);
-                    listString.AddRange(CodeWriter.GetNamespaceEnd(this, sw, rootNamespace));
+                    listString.AddRange(CodeWriter.GetNamespaceEnd(this, rootNamespace));
                     inNamespace = false;
                 }
                 if (UseNamespaces && !inNamespace)
                 {
                     //CodeWriter.WriteNamespaceStart(this, sw, type.IsRoot); inNamespace = true; rootNamespace = type.IsRoot;
-                    listString.AddRange(CodeWriter.GetNamespaceStart(this, sw, type.IsRoot));
+                    listString.AddRange(CodeWriter.GetNamespaceStart(this, type.IsRoot));
                     inNamespace = true;
                     rootNamespace = type.IsRoot;
                 }
                 //CodeWriter.WriteClass(this, sw, type);
-                listString.AddRange(CodeWriter.GetClass(this, sw, type));
+                listString.AddRange(CodeWriter.GetClass(this, type));
             }
             if (UseNamespaces && inNamespace)
             {
                 //CodeWriter.WriteNamespaceEnd(this, sw, rootNamespace);
-                listString.AddRange(CodeWriter.GetNamespaceEnd(this, sw, rootNamespace));
+                listString.AddRange(CodeWriter.GetNamespaceEnd(this, rootNamespace));
             }
             //CodeWriter.WriteFileEnd(this, sw);
-            listString.AddRange(CodeWriter.GetFileEnd(this, sw));
+            listString.AddRange(CodeWriter.GetFileEnd(this));
             return listString;
         }
 

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -46,45 +47,52 @@ namespace JsonToDocumentWindowsForm
 
         private void Button_generate_Click(object sender, EventArgs e)
         {
-            prettyJson();
-            tabControl1.TabPages.Clear();
-            listUI.Clear();
-            AllDataRequestModel request = new AllDataRequestModel();
-            request.ExamplesInDocumentation = checkBox_example.Checked;
-            request.JsonText = richTextBox_json.Text;
-            request.UsePascalCase = checkBox_pascal.Checked;
-            request.UseProperties = checkBox_properties.Checked;
-            request.MainClass = "SampleResponse1";
-            request.SecondaryNamespace = "SampleResponse1JsonTypes";
-            request.Namespace = "Example";
-
-            AllDataResponseModel response = Json2csharpAPI.getData("https://localhost:44312/api/AllFromJson", request);
-
-            if (response != null && response.classJson != null)
+            if (prettyJson())
             {
-                for (int i = 0; i < response.classJson.Count; i++)
+                tabControl1.TabPages.Clear();
+                listUI.Clear();
+                AllDataRequestModel request = new AllDataRequestModel();
+                request.ExamplesInDocumentation = checkBox_example.Checked;
+                request.JsonText = richTextBox_json.Text;
+                request.UsePascalCase = checkBox_pascal.Checked;
+                request.UseProperties = checkBox_properties.Checked;
+                request.MainClass = "RootObject";
+                //request.SecondaryNamespace = "RootObjectJsonTypes";
+                request.Namespace = "JsonClass";
+                string urlAPI = ConfigurationManager.AppSettings["URL_API"];
+                AllDataResponseModel response = Json2csharpAPI.getData(urlAPI, request);
+
+                if (response != null && response.classJson != null)
                 {
-                    string classStr = "";
-                    foreach(string str in response.classJson[i])
+                    for (int i = 0; i < response.classJson.Count; i++)
                     {
-                        classStr += str;
-                    }
-                    string className = response.document.datasetJson[i].tableName;
-                    DataTable dt = CreateDataTable();
-                    foreach (AllDataResponseModel.DatasetJson dsJson in response.document.datasetJson)
-                    {
-                        foreach (AllDataResponseModel.Row r in dsJson.rows)
+                        string classStr = "";
+                        foreach (string str in response.classJson[i])
                         {
-                            DataRow row = dt.NewRow();
-                            row["ColumnName"] = r.columName;
-                            row["Type"] = r.type;
-                            row["Example"] = r.example;
+                            classStr += str;
+                            classStr += Environment.NewLine;
                         }
+                        string className = response.document.datasetJson[i].tableName;
+                        DataTable dt = CreateDataTable();
+                        foreach (AllDataResponseModel.DatasetJson dsJson in response.document.datasetJson)
+                        {
+                            foreach (AllDataResponseModel.Row r in dsJson.rows)
+                            {
+                                DataRow row = dt.NewRow();
+                                row["ColumnName"] = r.columName;
+                                row["Type"] = r.type;
+                                row["Example"] = r.example;
+                                dt.Rows.Add(row);
+                            }
+                        }
+                        listUI.Add(createUI(className, classStr, dt));
                     }
-                    listUI.Add(createUI(className,classStr,dt));
+                }
+                else
+                {
+                    MessageBox.Show("Parsing your JSON didn't work. \n Please make sure it's valid or your Internet stable. Already did that ? \nPlease let me know so I can fix it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            
 
         }
 
@@ -98,11 +106,17 @@ namespace JsonToDocumentWindowsForm
             return table;
         }
 
-        private void prettyJson()
+        private bool prettyJson()
         {
             string rawData = Regex.Replace(richTextBox_json.Text, @"\s+", string.Empty);
-            string json = JsonHelper.FormatJson(rawData);
-            richTextBox_json.Text = json;
+            string prettyJson;
+            if(!JsonHelper.FormatJson(rawData,out prettyJson))
+            {
+                MessageBox.Show("Parsing your JSON didn't work. \n Please make sure it's valid or your Internet stable. Already did that ? \nPlease let me know so I can fix it.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            richTextBox_json.Text = prettyJson;
+            return true;
         }
 
         private void RadioButton_class_CheckedChanged(object sender, EventArgs e)
@@ -226,9 +240,10 @@ namespace JsonToDocumentWindowsForm
             // richTextBox_class
             // 
             richTextBox_class.Dock = System.Windows.Forms.DockStyle.Fill;
-            richTextBox_class.Location = new System.Drawing.Point(2, 35);
+            richTextBox_class.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            richTextBox_class.Location = new System.Drawing.Point(2, 2);
             richTextBox_class.Name = "richTextBox_class";
-            richTextBox_class.Size = new System.Drawing.Size(416, 150);
+            richTextBox_class.Size = new System.Drawing.Size(702, 154);
             richTextBox_class.TabIndex = 1;
             richTextBox_class.Text = classStr;
             // 
@@ -236,17 +251,17 @@ namespace JsonToDocumentWindowsForm
             // 
             dataGridView_doc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_doc.Dock = System.Windows.Forms.DockStyle.Fill;
-            dataGridView_doc.Location = new System.Drawing.Point(2, 35);
+            dataGridView_doc.Location = new System.Drawing.Point(2, 2);
             dataGridView_doc.Name = "dataGridView_doc";
-            dataGridView_doc.Size = new System.Drawing.Size(416, 150);
+            dataGridView_doc.Size = new System.Drawing.Size(702, 154);
             dataGridView_doc.TabIndex = 2;
             dataGridView_doc.DataSource = dt;
             dataGridView_doc.Visible = false;
             //Form1
 
             //this.tabControl1.ResumeLayout(false);
-            //tabPage1.ResumeLayout(false);
-            //tabPage1.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

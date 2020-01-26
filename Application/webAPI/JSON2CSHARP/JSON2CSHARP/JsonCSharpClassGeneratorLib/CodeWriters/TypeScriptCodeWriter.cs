@@ -115,27 +115,27 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             }
         }
 
-        public List<string> GetClass(IJsonClassGeneratorConfig config, TextWriter sw, JsonType type)
+        public List<string> GetClass(IJsonClassGeneratorConfig config, JsonType type)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> GetFileStart(IJsonClassGeneratorConfig config, TextWriter sw)
+        public List<string> GetFileStart(IJsonClassGeneratorConfig config)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> GetFileEnd(IJsonClassGeneratorConfig config, TextWriter sw)
+        public List<string> GetFileEnd(IJsonClassGeneratorConfig config)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> GetNamespaceStart(IJsonClassGeneratorConfig config, TextWriter sw, bool root)
+        public List<string> GetNamespaceStart(IJsonClassGeneratorConfig config,  bool root)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> GetNamespaceEnd(IJsonClassGeneratorConfig config, TextWriter sw, bool root)
+        public List<string> GetNamespaceEnd(IJsonClassGeneratorConfig config, bool root)
         {
             throw new NotImplementedException();
         }

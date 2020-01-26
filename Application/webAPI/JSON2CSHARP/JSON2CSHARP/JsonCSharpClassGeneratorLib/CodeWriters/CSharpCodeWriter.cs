@@ -92,16 +92,16 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             }
         }
 
-        public List<string> GetFileStart(IJsonClassGeneratorConfig config, TextWriter sw)
+        public List<string> GetFileStart(IJsonClassGeneratorConfig config)
         {
             List<string> listTextStart = new List<string>();
             if (config.UseNamespaces)
             {
-                foreach (var line in JsonClassGenerator.FileHeader)
-                {
-                    //sw.WriteLine("// " + line);
-                    listTextStart.Add("// " +line);
-                }
+                //foreach (var line in JsonClassGenerator.FileHeader)
+                //{
+                //    //sw.WriteLine("// " + line);
+                //    listTextStart.Add("// " +line);
+                //}
                 //sw.WriteLine();
                 listTextStart.Add("");
                 //sw.WriteLine("using System;");
@@ -150,7 +150,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             }
         }
 
-        public List<string> GetFileEnd(IJsonClassGeneratorConfig config, TextWriter sw)
+        public List<string> GetFileEnd(IJsonClassGeneratorConfig config)
         {
             List<string> listFileEnd = new List<string>();
             if (config.UseNestedClasses)
@@ -169,7 +169,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             sw.WriteLine("{");
             sw.WriteLine();
         }
-        public List<string> GetNamespaceStart(IJsonClassGeneratorConfig config, TextWriter sw, bool root)
+        public List<string> GetNamespaceStart(IJsonClassGeneratorConfig config, bool root)
         {
             List<string> listNamespaceStart = new List<string>();
             //sw.WriteLine();
@@ -187,7 +187,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
         {
             sw.WriteLine("}");
         }
-        public List<string> GetNamespaceEnd(IJsonClassGeneratorConfig config, TextWriter sw, bool root)
+        public List<string> GetNamespaceEnd(IJsonClassGeneratorConfig config, bool root)
         {
             List<string> listNamespaceEnd = new List<string>();
             //sw.WriteLine("}");
@@ -259,7 +259,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
 
 
         }
-        public List<string> GetClass(IJsonClassGeneratorConfig config, TextWriter sw, JsonType type)
+        public List<string> GetClass(IJsonClassGeneratorConfig config, JsonType type)
         {
             var visibility = config.InternalVisibility ? "internal" : "public";
             List<string> listClass = new List<string>();
@@ -321,7 +321,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             if (type.IsRoot && config.ExplicitDeserialization)
             {
                 //WriteStringConstructorExplicitDeserialization(config, sw, type, prefix);
-                List<string> listString = GetStringConstructorExplicitDeserialization(config, sw, type, prefix);
+                List<string> listString = GetStringConstructorExplicitDeserialization(config, type, prefix);
                 listClass.AddRange(listString);
             }
 
@@ -330,20 +330,20 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
                 if (config.UseProperties)
                 {
                     //WriteClassWithPropertiesExplicitDeserialization(sw, type, prefix);
-                    List<string> listString = GetClassWithPropertiesExplicitDeserialization(sw, type, prefix);
+                    List<string> listString = GetClassWithPropertiesExplicitDeserialization(type, prefix);
                     listClass.AddRange(listString);
                 }
                 else
                 {
                     //WriteClassWithFieldsExplicitDeserialization(sw, type, prefix);
-                    List<string> listString = GetClassWithFieldsExplicitDeserialization(sw, type, prefix);
+                    List<string> listString = GetClassWithFieldsExplicitDeserialization(type, prefix);
                     listClass.AddRange(listString);
                 }
             }
             else
             {
                 //WriteClassMembers(config, sw, type, prefix);
-                List<string> listString = GetClassMembers(config, sw, type, prefix);
+                List<string> listString = GetClassMembers(config,type, prefix);
                 listClass.AddRange(listString);
             }
 
@@ -541,7 +541,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
 
         }
 
-        private List<string> GetClassMembers(IJsonClassGeneratorConfig config, TextWriter sw, JsonType type, string prefix)
+        private List<string> GetClassMembers(IJsonClassGeneratorConfig config, JsonType type, string prefix)
         {
             List<string> listClassMembers = new List<string>();
             foreach (var field in type.Fields)
@@ -684,7 +684,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
 
         }
 
-        private List<string> GetClassWithPropertiesExplicitDeserialization(TextWriter sw, JsonType type, string prefix)
+        private List<string> GetClassWithPropertiesExplicitDeserialization(JsonType type, string prefix)
         {
             List<string> listClassWithPropertues = new List<string>();
             //sw.WriteLine(prefix + "private JObject __jobject;");
@@ -758,7 +758,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             sw.WriteLine();
         }
 
-        private List<string> GetStringConstructorExplicitDeserialization(IJsonClassGeneratorConfig config, TextWriter sw, JsonType type, string prefix)
+        private List<string> GetStringConstructorExplicitDeserialization(IJsonClassGeneratorConfig config, JsonType type, string prefix)
         {
             List<string> listString = new List<string>();
             //sw.WriteLine();
@@ -798,7 +798,7 @@ namespace Xamasoft.JsonClassGenerator.CodeWriters
             }
         }
 
-        private List<string> GetClassWithFieldsExplicitDeserialization(TextWriter sw, JsonType type, string prefix)
+        private List<string> GetClassWithFieldsExplicitDeserialization(JsonType type, string prefix)
         {
 
             List<string> listString = new List<string>();

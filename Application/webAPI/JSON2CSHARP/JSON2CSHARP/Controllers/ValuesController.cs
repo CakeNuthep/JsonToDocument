@@ -14,9 +14,17 @@ namespace JSON2CSHARP.Controllers
 {
     public class ValuesController : ApiController
     {
+        [Route("api/test")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult GetTest([FromBody]testRequest input)
+        {
+
+            return Ok("hello world");
+        }
         // GET api/values
         [Route("api/ClassFromJson")]
-        public IHttpActionResult GetClassFromJson(JsonToClassRequest input)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult GetClassFromJson([FromBody]JsonToClassRequest input)
         {
             if(!checkFormat(input))
             {
@@ -29,7 +37,8 @@ namespace JSON2CSHARP.Controllers
 
         // GET api/values/5
         [Route("api/DataSetFromJson")]
-        public IHttpActionResult GetDataSetFromJson(JsonToClassRequest input)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult GetDataSetFromJson([FromBody]JsonToClassRequest input)
         {
             if (!checkFormat(input))
             {
@@ -42,7 +51,8 @@ namespace JSON2CSHARP.Controllers
         }
 
         [Route("api/AllFromJson")]
-        public IHttpActionResult GetAllFromJson(JsonToClassRequest input)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult GetAllFromJson([FromBody]JsonToClassRequest input)
         {
             if (!checkFormat(input))
             {
@@ -117,7 +127,7 @@ namespace JSON2CSHARP.Controllers
             gen.Namespace = string.IsNullOrEmpty(input.Namespace) ? null : input.Namespace;
             gen.NoHelperClass = false;
             gen.SecondaryNamespace = true && !string.IsNullOrEmpty(input.SecondaryNamespace) ? input.SecondaryNamespace : null;
-            gen.TargetFolder = "C:\\Users\\gt_cake\\Documents";
+            gen.TargetFolder = "";
             gen.UseProperties = input.UseProperties;
             gen.MainClass = input.MainClass;
             gen.UsePascalCase = input.UsePascalCase;

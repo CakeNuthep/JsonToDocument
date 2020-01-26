@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Models\DocumentResponse.cs" />
     <Compile Include="Models\request\JsonToClassRequest.cs" />
+    <Compile Include="Models\request\testRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
