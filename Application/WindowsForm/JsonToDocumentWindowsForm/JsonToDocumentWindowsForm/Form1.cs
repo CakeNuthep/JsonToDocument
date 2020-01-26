@@ -86,6 +86,15 @@ namespace JsonToDocumentWindowsForm
                             }
                         }
                         listUI.Add(createUI(className, classStr, dt));
+                        if(radioButton_class.Checked)
+                        {
+                            toggleGridViewDoc(false);
+                        }
+                        else if(radioButton_dataset.Checked)
+                        {
+                            toggleGridViewDoc(true);
+                        }
+
                     }
                 }
                 else
@@ -124,10 +133,7 @@ namespace JsonToDocumentWindowsForm
             if(radioButton_class.Checked)
             {
                 //visible grid = false
-                foreach (UI ui in listUI)
-                {
-                    ui.dataGridView_doc.Visible = false;
-                }
+                toggleGridViewDoc(false);
             }
         }
         private void radioButton_dataset_CheckedChanged(object sender, EventArgs e)
@@ -135,10 +141,15 @@ namespace JsonToDocumentWindowsForm
             if(radioButton_dataset.Checked)
             {
                 //visible grid = true
-                foreach(UI ui in listUI)
-                {
-                    ui.dataGridView_doc.Visible = true;
-                }
+                toggleGridViewDoc(true);
+            }
+        }
+
+        private void toggleGridViewDoc(bool isVisible)
+        {
+            foreach (UI ui in listUI)
+            {
+                ui.dataGridView_doc.Visible = isVisible;
             }
         }
 
